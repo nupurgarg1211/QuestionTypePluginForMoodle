@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="question/type/classdiagram/db" VERSION="2013012900" COMMENT="XMLDB file for Moodle question/type/classdiagram"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="question_classdiagram" COMMENT="Extra options for classdiagram questions.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="question"/>
+        <FIELD NAME="question" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Foreign key linking to the question table." PREVIOUS="id" NEXT="answer"/>
+	<FIELD NAME="answer" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Foreign key linking to the answer table." PREVIOUS="question" NEXT="class_marks"/>
+	<FIELD NAME="class_marks" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="answer" NEXT="class_name_marks"/>
+	<FIELD NAME="class_name_marks" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="class_marks"  NEXT="class_attribute_marks"/>
+     <FIELD NAME="class_attribute_marks" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="class_name_marks" NEXT="class_extra_marks"/>
+       <FIELD NAME="class_extra_marks" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="class_attribute_marks" NEXT="association_marks"/>
+       <FIELD NAME="association_marks" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="class_extra_marks" NEXT="association_type_marks"/>
+       <FIELD NAME="association_type_marks" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="association_marks" NEXT="association_cardinality_marks"/>
+       <FIELD NAME="association_cardinality_marks" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="association_type_marks" NEXT="association_extra_marks"/>
+       <FIELD NAME="association_extra_marks" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="association_cardinality_marks" NEXT="generalization_marks"/>
+       <FIELD NAME="generalization_marks" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="association_extra_marks" NEXT="generalization_type_marks"/>
+       <FIELD NAME="generalization_type_marks" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="generalization_marks" NEXT="generalization_extra_marks"/>
+       <FIELD NAME="generalization_extra_marks" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="generalization_type_marks"/>
+         
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" NEXT="questionkey"/>
+        <KEY NAME="questionkey" TYPE="foreign" FIELDS="question" REFTABLE="question" REFFIELDS="id" PREVIOUS="primary"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
